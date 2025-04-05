@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
  
 const Signup = () => {
 
+  const navigate = useNavigate();
 
     const [formData,setFormData] = useState({
         name : '',
@@ -26,6 +28,7 @@ const Signup = () => {
 
             const res = await axios.post("http://localhost:3000/signup", formData);
 
+            // data m aik obj milat h jis m wo hota h, jo hum backened se bhjty hn
             console.log(res.data.message); // 👈 Backend se response milta hai, uska message alert me show
             alert(res.data.message); 
 
@@ -36,6 +39,11 @@ const Signup = () => {
                 number : '',
                 age : ''
             })
+
+            if (res.data.status == 200) {
+
+              navigate('/login');
+          }
 
 
 
@@ -56,6 +64,7 @@ const Signup = () => {
               name="name"
               placeholder="Full Name"
               onChange={handleChange}
+              value={formData.name}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -65,6 +74,7 @@ const Signup = () => {
               name="number"
               placeholder="Phone Number"
               onChange={handleChange}
+              value={formData.number}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -74,6 +84,7 @@ const Signup = () => {
               name="age"
               placeholder="Age"
               onChange={handleChange}
+              value={formData.age}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -83,6 +94,7 @@ const Signup = () => {
               name="email"
               placeholder="Email"
               onChange={handleChange}
+              value={formData.email}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -92,6 +104,7 @@ const Signup = () => {
               name="password"
               placeholder="Password"
               onChange={handleChange}
+              value={formData.password}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>

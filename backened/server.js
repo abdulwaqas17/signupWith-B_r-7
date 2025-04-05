@@ -9,7 +9,8 @@ let cors = require('cors');
 
 
 app.use(express.json());
-app.use(cors());
+
+app.use(cors()); // ager kisi duray url/domain se request bhjo to us ko bhi allow krta h
 // to connect mongo db
 connectDB();
 
