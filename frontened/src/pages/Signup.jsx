@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
  
 const Signup = () => {
 
@@ -32,13 +32,20 @@ const Signup = () => {
             console.log(res.data.message); // 👈 Backend se response milta hai, uska message alert me show
             alert(res.data.message); 
 
-            setFormData({
+           
+
+            if (res.data.status == 200) {
+
+              setFormData({
                 name : '',
                 email : '',
                 password : '',
                 number : '',
                 age : ''
             })
+          }
+
+           
 
             if (res.data.status == 200) {
 
@@ -115,6 +122,16 @@ const Signup = () => {
             Signup
           </button>
         </form>
+          {/* Already have an account */}
+    <p className="mt-6 text-center text-sm text-gray-600">
+      Already have an account?
+      <Link
+        to="/login"
+        className="text-blue-500 hover:underline ml-1"
+      >
+        Login here
+      </Link>
+    </p>
       </div>
     </div>
   );

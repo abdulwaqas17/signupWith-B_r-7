@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
@@ -27,12 +27,17 @@ const Login = () => {
       console.log(res.data.message); // 👈 Backend se response milta hai, uska message alert me show
       alert(res.data.message);
 
-      setFormData({
       
-        email: "",
-        password: "",
-       
-      });
+
+      if (res.data.status == 200) {
+
+        setFormData({
+      
+            email: "",
+            password: "",
+           
+          });
+      }
 
       if (res.data.status == 200) {
 
@@ -48,7 +53,7 @@ const Login = () => {
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-semibold text-center text-blue-500 mb-6">
-          Signup
+          Login
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -75,9 +80,19 @@ const Login = () => {
             type="submit"
             className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            Signup
+            Login
           </button>
         </form>
+         {/* Already have an account */}
+    <p className="mt-6 text-center text-sm text-gray-600">
+      Don't have an account?
+      <Link
+        to="/"
+        className="text-blue-500 hover:underline ml-1"
+      >
+        Sign up
+      </Link>
+    </p>
       </div>
     </div>
   );
