@@ -26,15 +26,25 @@ const Signup = () => {
 
         try {
 
-            const res = await axios.post("http://localhost:3000/signup", formData);
+          
+            const res = await fetch("http://localhost:3000/signup", {
+              method : "POST",
+              headers : {'Content-type' : "application/json"},
+              body: JSON.stringify(formData)
+
+            });
+
+            const data = await res.json();
+
+            console.log('data ==>',data);
 
             // data m aik obj milat h jis m wo hota h, jo hum backened se bhjty hn
-            console.log(res.data.message); // 👈 Backend se response milta hai, uska message alert me show
-            alert(res.data.message); 
+            console.log(data.message); // 👈 Backend se response milta hai, uska message alert me show
+            alert(data.message); 
 
            
 
-            if (res.data.status == 200) {
+           
 
               setFormData({
                 name : '',
@@ -43,21 +53,26 @@ const Signup = () => {
                 number : '',
                 age : ''
             })
-          }
+          
 
            
 
-            if (res.data.status == 200) {
+
 
               navigate('/login');
-          }
+          
 
 
 
         } catch (error) {
-            console.log(error.response.data.message)
-            alert(error.response.data.message)
+            console.log(error)
+            // alert(error.response.data.message)
         }
+
+        /*
+        //  With Axios
+            //const res = await axios.post("http://localhost:3000/signup", formData )
+        */
     }
 
   return (

@@ -5,7 +5,7 @@ dotenv.config();
 let router = require('./routes/routers');
 let connectDB = require('./config/db');
 let cors = require('cors');
-
+let path = require('path')
 
 
 app.use(express.json());
@@ -14,6 +14,13 @@ app.use(cors()); // ager kisi duray url/domain se request bhjo to us ko bhi allo
 // to connect mongo db
 connectDB();
 
+// Serve static files from the build folder
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Serve the index.html file for all non-static requests 
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 
 app.use('/',router);
