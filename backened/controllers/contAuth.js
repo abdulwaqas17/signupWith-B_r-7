@@ -1,4 +1,5 @@
 let userModel = require('../models/users');
+let cartsModel = require('../models/carts')
 let bcrypt = require('bcryptjs');
 
 let userContFunc = async (req,res)=> {
@@ -100,4 +101,70 @@ let userContFunc2 = async (req,res) => {
   
 }
 
-module.exports = {userContFunc,userContFunc2};
+
+// for adding carts
+const addCart = async (req,res) => {
+   
+  try {
+
+      const {name,price,description} = req.body;
+
+      const imagePath = req.file ? req.file.path : '';
+
+      // create document
+      const newCart = new cartsModel ({
+          name,
+          price,
+          image : imagePath,
+          description
+      })
+  
+      // add in mongo db
+      const cart = await newCart.save();
+  
+      console.log('cart', cart);
+      console.log('newCart', newCart);
+  
+      res.send({
+          status : 200,
+          message : 'cart added successfully',
+          cart : newCart
+      })
+
+  } catch (err) {
+      console.log(err);
+      res.send({
+          status : 400,
+          message : 'Error occur in adding cart',
+      })
+  }
+
+}
+
+
+// for getting carts
+const getCart = async (req,res) => {
+
+  try {
+
+      // to find all the carts
+      const carts = await cartsModel.find();
+
+      res.send({
+          status : 200,
+          message : 'getting carts successfully',
+          carts : carts
+      })
+
+  } catch (err) {
+      console.log(err);
+
+      res.send({
+          status : 400,
+          message : 'Error occur in getting carts',
+          
+      })
+  }
+}
+
+module.exports = {userContFunc,userContFunc2,addCart,getCart};  

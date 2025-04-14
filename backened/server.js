@@ -14,6 +14,9 @@ app.use(cors()); // ager kisi duray url/domain se request bhjo to us ko bhi allo
 // to connect mongo db
 connectDB();
 
+app.use('/uploads', express.static('uploads'));
+
+
 // Serve static files from the build folder
 app.use(express.static(path.join(__dirname, 'build')));
 

@@ -1,33 +1,14 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import Nav from '../Components/Nav';
 
 const Home = () => {
 
-    const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // logout logic here
-    console.log('User logged out');
-    alert('Logout Scccessfully');
-    navigate('/')
-  };
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Navbar */}
-      <nav className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="text-xl font-bold text-blue-600">MyApp</div>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all cursor-pointer"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Nav/>
 
       {/* Hero Section */}
       <header className="bg-blue-50 flex-grow">
