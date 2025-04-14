@@ -27,7 +27,7 @@ import Nav from '../Components/Nav';
 
 const Carts = () => {
 
-  const [carts,setCarts] = useState(null);
+  const [carts,setCarts] = useState([]);
 
 
   useEffect(()=> {
@@ -40,7 +40,8 @@ const Carts = () => {
         const data = await res.json();
 
 
-        setCarts(data.Carts)
+        setCarts(data.carts)
+        console.log(data);
 
 
       } catch (err) {
@@ -53,6 +54,7 @@ const Carts = () => {
 
   },[])
 
+  console.log(carts.length);
   return (
     <>
     <Nav/>
@@ -68,7 +70,7 @@ const Carts = () => {
       {/* Products Grid */}
       <main className="flex-grow py-10 px-4 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {products.map(cart => (
+          {carts.length > 0 ? carts.map(cart => (
             <div
               key={cart._id}
               className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-4 flex flex-col"
@@ -85,7 +87,7 @@ const Carts = () => {
                 View Details
               </button>
             </div>
-          ))}
+          )) : 'No Carts found'}
         </div>
       </main>
 

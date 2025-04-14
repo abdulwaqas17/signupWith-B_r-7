@@ -3,14 +3,14 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // folder jahan image save hogi
+    cb(null, 'public/uploads'); // folder jahan image save hogi
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname)); // e.g. 168123456.png
+    // jhn '.' h, whn se split
+    const uniquepreffix = file.originalname.split('.')[0] + '-' + Date.now();
+    cb(null, uniquepreffix + path.extname(file.originalname)); // e.g. 168123456.png
   }
-});
-
+})
 const upload = multer({ storage: storage });
 
 module.exports = upload;

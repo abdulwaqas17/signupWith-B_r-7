@@ -107,15 +107,20 @@ const addCart = async (req,res) => {
    
   try {
 
+    console.log(req.body);
+    console.log(req.file);
+
       const {name,price,description} = req.body;
 
-      const imagePath = req.file ? req.file.path : '';
+      // const imagePath = req.file ? `/uploads/${req.file.filename}`  : '';
+
+      // console.log(imagePath);
 
       // create document
       const newCart = new cartsModel ({
           name,
           price,
-          image : imagePath,
+          image : `/uploads/${req.file.filename}`,
           description
       })
   

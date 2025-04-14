@@ -157,6 +157,7 @@ const UserProfile = () => {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p>&copy; {new Date().getFullYear()} MyApp. All rights reserved.</p>
           <p className="text-sm mt-2 text-gray-400">Designed with ❤️ using React & Tailwind CSS</p>
+          
         </div>
       </footer>
     </div>
