@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Nav from '../Components/Nav';
+import {jwtDecode} from 'jwt-decode'
 
-const initialCarts = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    image: "https://via.placeholder.com/150",
-    price: "$99.99",
-    description: "High-quality sound, noise cancellation, and long battery life."
-  }
-];
+
+// const initialCarts = [
+//   {
+//     id: 1,
+//     name: "Wireless Headphones",
+//     image: "https://via.placeholder.com/150",
+//     price: "$99.99",
+//     description: "High-quality sound, noise cancellation, and long battery life."
+//   }
+// ];
 
 const UserProfile = () => {
-  const [carts, setCarts] = useState(initialCarts);
+
+  let [user,setUser] = useState(null)
+  useEffect(()=> {
+
+    let token = window.localStorage.getItem('token');
+    let data = jwtDecode(token);
+    console.log(data);
+    setUser(data)
+    
+  },[])
+
+  // const [carts, setCarts] = useState(initialCarts);
   const [formData, setFormData] = useState({
     name: '',
     image: null,
@@ -70,12 +83,12 @@ const UserProfile = () => {
         <section className="bg-white shadow rounded-xl p-6">
           <div className="text-center">
             <img
-              src="https://via.placeholder.com/100"
+              src="profile.jpg"
               alt="User"
-              className="mx-auto rounded-full w-24 h-24 mb-4"
+              className="mx-auto rounded-full w-64 h-64 mb-4 shadow-2xl"
             />
-            <h1 className="text-3xl font-bold text-blue-600">John Doe</h1>
-            <p className="text-gray-600">johndoe@example.com</p>
+            <h1 className="text-3xl font-bold text-blue-600">{user ? user.name : 'user name'}</h1>
+            <p className="text-gray-600">{user ? user.email : 'user email'}</p>
           </div>
         </section>
 
@@ -131,7 +144,7 @@ const UserProfile = () => {
       </div>
 
       {/* Carts Section */}
-      <section className="max-w-7xl mx-auto px-4 py-10">
+      {/* <section className="max-w-7xl mx-auto px-4 py-10">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Your Carts</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {carts.map(cart => (
@@ -150,7 +163,7 @@ const UserProfile = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-6 mt-auto">

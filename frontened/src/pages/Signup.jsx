@@ -1,79 +1,68 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
- 
+
 const Signup = () => {
 
   const navigate = useNavigate();
 
-    const [formData,setFormData] = useState({
-        name : '',
-        email : '',
-        password : '',
-        number : '',
-        age : ''
-    })
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    number: '',
+    age: ''
+  })
 
-    const handleChange = (e)=> {
-        setFormData({...formData, [e.target.name] : e.target.value})
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  console.log(formData);
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    try {
+
+      const res = await fetch("http://localhost:3000/signup", {
+        method: "POST",
+        headers: { 'Content-type': "application/json" },
+        body: JSON.stringify(formData)
+
+      });
+
+      const data = await res.json();
+
+      console.log('data ==>', data);
+
+      // data m aik obj milat h jis m wo hota h, jo hum backened se bhjty hn
+      console.log(data.message); // 👈 Backend se response milta hai, uska message alert me show
+      alert(data.message);
+
+    if (data.status == 200) {
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        number: '',
+        age: ''
+      })
+
+      navigate('/login'); 
     }
 
-    console.log(formData);
-
-    const handleSubmit = async (e) => {
-
-        e.preventDefault();
-
-        try {
-
-          
-            const res = await fetch("http://localhost:3000/signup", {
-              method : "POST",
-              headers : {'Content-type' : "application/json"},
-              body: JSON.stringify(formData)
-
-            });
-
-            const data = await res.json();
-
-            console.log('data ==>',data);
-
-            // data m aik obj milat h jis m wo hota h, jo hum backened se bhjty hn
-            console.log(data.message); // 👈 Backend se response milta hai, uska message alert me show
-            alert(data.message); 
-
-           
-
-           
-
-              setFormData({
-                name : '',
-                email : '',
-                password : '',
-                number : '',
-                age : ''
-            })
-          
-
-           
-
-
-
-              navigate('/login');
-          
-
-
-
-        } catch (error) {
-            console.log(error)
-            // alert(error.response.data.message)
-        }
-
-        /*
-        //  With Axios
-            //const res = await axios.post("http://localhost:3000/signup", formData )
-        */
+    } catch (error) {
+      console.log(error)
+      // alert(error.response.data.message)
     }
+
+    /*
+    //  With Axios
+        //const res = await axios.post("http://localhost:3000/signup", formData )
+    */
+  }
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
@@ -137,16 +126,16 @@ const Signup = () => {
             Signup
           </button>
         </form>
-          {/* Already have an account */}
-    <p className="mt-6 text-center text-sm text-gray-600">
-      Already have an account?
-      <Link
-        to="/login"
-        className="text-blue-500 hover:underline ml-1"
-      >
-        Login here
-      </Link>
-    </p>
+        {/* Already have an account */}
+        <p className="mt-6 text-center text-sm text-gray-600">
+          Already have an account?
+          <Link
+            to="/login"
+            className="text-blue-500 hover:underline ml-1"
+          >
+            Login here
+          </Link>
+        </p>
       </div>
     </div>
   );

@@ -338,3 +338,38 @@ Development ke dauraan `cors()` open rakhna theek hai, lekin jab app deploy karo
 ### 🌱 Motivation:
 > **"Ilm hasil karo, chaahe us ke liye safar hi kyun na karna pade."**  
 Har chhoti samajh aapko ek behtar developer banane ki taraf le ja rahi hai. Keep growing and never stop learning! 🚀
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+================================== PROTECTED ROUTES ====================================
+Protected Routes : Custom logic jo secure pages ko unauthorized user k access krne se bachata hai, Ta k unauthorized user authorized user waly routes pr na Ja saky,Secure pages ko unauthorized logon se protect karna
+
+
+
+
+
+
+============================= USE CASE OF TOKEN IN LOCAL STORAGE ==============================
+📌 Conclusion:
+Token ko localStorage me rakhne ka maksad hota hai ke har request ke sath user ki pehchan backend ko milti rahe. Yeh secure aur scalable way hota hai login sessions handle karne ka.
+
+✅ Key Points:
+localStorage me token = session maintain karna.
+
+Axios ke headers me token send karo.
+
+Backend me middleware se verify karo.
+
+Token hone par hi frontend me dashboard waghera dikhana.

@@ -6,7 +6,7 @@ const storage = multer.diskStorage({
     cb(null, 'public/uploads'); // folder jahan image save hogi
   },
   filename: function (req, file, cb) {
-    // jhn '.' h, whn se split
+    // jhn '.' h, whn se split , file ka uinque name generate krna her bar
     const uniquepreffix = file.originalname.split('.')[0] + '-' + Date.now();
     cb(null, uniquepreffix + path.extname(file.originalname)); // e.g. 168123456.png
   }

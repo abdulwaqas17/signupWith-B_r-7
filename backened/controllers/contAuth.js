@@ -1,6 +1,7 @@
 let userModel = require('../models/users');
 let cartsModel = require('../models/carts')
 let bcrypt = require('bcryptjs');
+let jwt = require('jsonwebtoken');
 
 let userContFunc = async (req,res)=> {
 
@@ -83,13 +84,20 @@ let userContFunc2 = async (req,res) => {
       )
     }
 
+    const payloud = {
+
+      id : user._id,
+      name : user.name,
+      email : user.email,
+      user : user.age,
+    }
+
+    const token = jwt.sign(payloud,'secret123',{'expiresIn':'1h'})
     res.send({
       status : 200,
-      message : 'Login Successfully'
+      message : 'Login Successfully',
+      token : token
     })
-
-
-    
 
   } catch (err) {
     console.log('error is login =', err);

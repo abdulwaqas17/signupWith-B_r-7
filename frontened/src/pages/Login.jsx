@@ -26,10 +26,13 @@ const Login = () => {
       // data m aik obj milat h jis m wo hota h, jo hum backened se bhjty hn
       console.log(res.data.message); // 👈 Backend se response milta hai, uska message alert me show
       alert(res.data.message);
+      console.log(res.data);
 
       
 
       if (res.data.status == 200) {
+
+        window.localStorage.setItem('token',res.data.token)
 
         setFormData({
       
