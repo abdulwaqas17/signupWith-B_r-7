@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Carts from './pages/Carts'
 import Profile from './pages/Profile'
 import ProtectedRoutes from './Components/ProtectedRoutes'
+import Page404 from './pages/Page404'
 
 
 function App() {
@@ -21,13 +22,13 @@ function App() {
 
       <Routes>
 
-        <Route path='/' element={<Signup/>} />
+        <Route path='/signup' element={<Signup/>} />
         <Route path='/login' element={<Login/>} />
 
-        <Route path='/home' element={
-          <ProtectedRoutes>
+        <Route path='/' element={
+        
             <Home />
-          </ProtectedRoutes>
+        
         } />
 
         <Route path='/carts' element={
@@ -41,6 +42,9 @@ function App() {
             <Profile/>
           </ProtectedRoutes>
         } />
+
+<Route path='*' element={<Page404/>} />
+
 
 
       </Routes>

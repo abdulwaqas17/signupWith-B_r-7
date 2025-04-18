@@ -44,7 +44,7 @@ const Login = () => {
 
       if (res.data.status == 200) {
 
-          navigate('/home');
+          navigate('/');
       }
     } catch (error) {
       console.log(error.response.data.message);
@@ -90,7 +90,7 @@ const Login = () => {
     <p className="mt-6 text-center text-sm text-gray-600">
       Don't have an account?
       <Link
-        to="/"
+        to="/signup"
         className="text-blue-500 hover:underline ml-1"
       >
         Sign up

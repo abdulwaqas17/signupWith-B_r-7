@@ -15,8 +15,6 @@ app.use(cors()); // ager kisi duray url/domain se request bhjo to us ko bhi allo
 app.use('/uploads', express.static('./public/uploads')); 
 connectDB();
 
-
-
 // Serve static files from the build folder
 // app.use(express.static(path.join(__dirname, 'build')));
 
@@ -24,7 +22,6 @@ connectDB();
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 // });
-
 
 app.use('/',router);
 

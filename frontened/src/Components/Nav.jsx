@@ -17,7 +17,7 @@ const Nav = () => {
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="text-xl font-bold text-blue-600 cursor-pointer" onClick={() => navigate('/home')}>
+          <div className="text-xl font-bold text-blue-600 cursor-pointer" onClick={() => navigate('/')}>
             MyApp
           </div>
 
@@ -54,7 +54,7 @@ const Nav = () => {
             </ul>
             <button
               onClick={() => { handleLogout(); setIsOpen(false); }}
-              className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all w-full"
+              className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all w-full cursor-pointer"
             >
               Logout
             </button>

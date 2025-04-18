@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Nav from '../Components/Nav';
 import {jwtDecode} from 'jwt-decode'
+import { useNavigate } from 'react-router-dom';
 
 
 // const initialCarts = [
@@ -14,6 +15,8 @@ import {jwtDecode} from 'jwt-decode'
 // ];
 
 const UserProfile = () => {
+
+  const navigate = useNavigate();
 
   let [user,setUser] = useState(null)
   useEffect(()=> {
@@ -62,6 +65,24 @@ const UserProfile = () => {
   
       const data = await res.json();
       console.log("Upload success:", data);
+
+
+      if (data.status == 200) {
+
+        alert('Product add successfully')
+
+       setFormData({
+        name: '',
+        image: null,
+        price: '',
+        description: ''
+      })
+
+      navigate('/carts')
+    
+    }
+
+
     } catch (error) {
       console.error("Error uploading:", error);
     }
